@@ -20,7 +20,7 @@ const HomeScreen = () => {
 
   return (
     <div className="container mx-auto p-5">
-      <h1 className="text-3xl font-bold mb-5">Latest Products</h1>
+      <h1 className="text-3xl font-bold mb-5">All Products</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <div key={product._id} className="p-4 border rounded-lg shadow-md">
