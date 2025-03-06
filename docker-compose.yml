@@ -21,7 +21,9 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    restart: always
+    environment:
+    - CHOKIDAR_USEPOLLING=true  # Enables hot reloading
+    - WATCHPACK_POLLING=true     # Helps detect file changes
 
   mongo:
     image: mongo
