@@ -50,7 +50,7 @@ export default function NavBar() {
 
 						<div className="hidden sm:ml-10 sm:flex space-x-4">
 							<Link to="/products" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">
-								Products
+								Home
 							</Link>
 							<Link
 								to="/category/computers"
@@ -61,9 +61,9 @@ export default function NavBar() {
 							<Link to="/category/mobiles" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">
 								Mobiles
 							</Link>
-							<Link to="/about" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">
+							{/* <Link to="/about" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">
 								About
-							</Link>
+							</Link> */}
 						</div>
 					</div>
 
@@ -141,9 +141,9 @@ export default function NavBar() {
 						>
 							Mobiles
 						</Link>
-						<Link to="/about" className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700">
+						{/* <Link to="/about" className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700">
 							About
-						</Link>
+						</Link> */}
 					</div>
 				</div>
 			)}
