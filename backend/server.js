@@ -1,16 +1,19 @@
-require("dotenv").config(); // Ensure dotenv is at the top
+require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
+const path = require("path");
 
 const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" }));
 app.use(morgan("dev"));
+
+app.use("/ecomm-images", express.static(path.join(__dirname, "ecomm-images")));
 
 const productRoutes = require("./routes/productRoutes");
 app.use("/api/products", productRoutes);
