@@ -1,22 +1,18 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
-const SearchFilterBar = ({ onSearch, onSort, onGroupByBrand }) => {
+const SearchFilterBar = ({ onSearch, onSort, onGroupByBrand, sortConfig }) => {
 	const [searchTerm, setSearchTerm] = useState("");
-	const [isAscending, setIsAscending] = useState(true);
-	const [groupByBrand, setGroupByBrand] = useState(false);
 
 	const handleSearch = () => {
 		onSearch(searchTerm);
 	};
 
-	const handleSortToggle = () => {
-		setIsAscending(!isAscending);
-		onSort(isAscending ? "desc" : "asc");
-	};
-
-	const handleGroupByBrandToggle = () => {
-		setGroupByBrand(!groupByBrand);
-		onGroupByBrand(!groupByBrand);
+	const handleSortClick = (field) => {
+		// Toggle between: null -> asc -> desc -> null
+		const currentOrder = sortConfig[field];
+		const nextOrder = !currentOrder ? "asc" : currentOrder === "asc" ? "desc" : null;
+		onSort(field, nextOrder);
 	};
 
 	return (
@@ -42,24 +38,40 @@ const SearchFilterBar = ({ onSearch, onSort, onGroupByBrand }) => {
 			<div className="flex space-x-3 mt-3 md:mt-0 text-xs text-nowrap">
 				{/* Sort by Price Button */}
 				<button
-					onClick={handleSortToggle}
+					onClick={() => handleSortClick("price")}
 					className="bg-gray-700 text-white px-3 py-2 rounded-md hover:bg-gray-800"
 				>
-					Price ({isAscending ? "⬆️ Asc" : "⬇️ Desc"})
+					Price {sortConfig.price === "asc" ? "⬆️" : sortConfig.price === "desc" ? "⬇️" : ""}
+				</button>
+
+				{/* Sort by Name Button */}
+				<button
+					onClick={() => handleSortClick("name")}
+					className="bg-gray-700 text-white px-3 py-2 rounded-md hover:bg-gray-800"
+				>
+					Name {sortConfig.name === "asc" ? "⬆️" : sortConfig.name === "desc" ? "⬇️" : ""}
 				</button>
 
 				{/* Group by Brand Toggle */}
 				<button
-					onClick={handleGroupByBrandToggle}
-					className={`px-3 py-2 rounded-md ${
-						groupByBrand ? "bg-blue-600 text-white" : "bg-gray-700 text-white hover:bg-gray-800"
-					}`}
+					onClick={() => onGroupByBrand(true)}
+					className="bg-gray-700 text-white px-3 py-2 rounded-md hover:bg-gray-800"
 				>
-					{groupByBrand ? "Ungroup by Brand" : "Group by Brand"}
+					Group by Brand
 				</button>
 			</div>
 		</div>
 	);
+};
+
+SearchFilterBar.propTypes = {
+	onSearch: PropTypes.func.isRequired,
+	onSort: PropTypes.func.isRequired,
+	onGroupByBrand: PropTypes.func.isRequired,
+	sortConfig: PropTypes.shape({
+		price: PropTypes.oneOf([null, "asc", "desc"]),
+		name: PropTypes.oneOf([null, "asc", "desc"]),
+	}).isRequired,
 };
 
 export default SearchFilterBar;
