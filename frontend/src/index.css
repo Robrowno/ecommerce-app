@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* blink effect on the h1 title on the homepage*/
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+
+.blink {
+    display: inline-block;
+    animation: blink 1s step-start infinite;
+}
