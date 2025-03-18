@@ -7,7 +7,7 @@ export default function NavBar() {
 	const cartItems = JSON.parse(localStorage.getItem("cart")) || []; // Get cart items
 
 	return (
-		<nav className="bg-gray-800 shadow-md">
+		<nav className="bg-gray-800 shadow-md sticky top-0 z-50">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="relative flex h-16 items-center justify-between">
 					{/* Mobile Menu Button */}
