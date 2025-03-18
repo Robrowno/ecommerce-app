@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Link, useSearchParams } from "react-router-dom";
 import SearchFilterBar from "../components/SearchFilterBar";
+import { useCart } from "../context/CartContext";
 
 const Products = () => {
 	const [products, setProducts] = useState([]);
@@ -9,6 +10,7 @@ const Products = () => {
 	const [sortConfig, setSortConfig] = useState({ price: null, name: null }); // null, "asc", or "desc"
 	const [searchParams] = useSearchParams();
 	const productCategory = searchParams.get("category");
+	const { addToCart } = useCart();
 
 	// Apply sorting to products based on sortConfig
 	const applySorting = useCallback(
@@ -81,6 +83,10 @@ const Products = () => {
 		}
 	};
 
+	const handleAddToCart = (product) => {
+		addToCart(product);
+	};
+
 	return (
 		<>
 			<div className="h-100 flex bg-gray-100 border shadow-md justify-between">
@@ -108,7 +114,15 @@ const Products = () => {
 								<h2 className="text-lg font-semibold mt-2">{product.name}</h2>
 							</Link>
 							<p className="text-blue-500 text-xs font-medium">{product.category}</p>
-							<p className="text-green-600 font-bold">£{product.price}</p>
+							<div className="flex justify-between items-center mt-2">
+								<p className="text-green-600 font-bold">£{product.price}</p>
+								<button
+									onClick={() => handleAddToCart(product)}
+									className="bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 text-sm"
+								>
+									Add to Cart
+								</button>
+							</div>
 						</div>
 					))}
 				</div>
