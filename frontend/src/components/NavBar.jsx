@@ -1,13 +1,29 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import CartIcon from "./CartIcon";
+import Dropdown from "./Dropdown";
 
 export default function NavBar() {
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-	const cartItems = JSON.parse(localStorage.getItem("cart")) || []; // Get cart items
+	const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+	const [isCartDropdownOpen, setIsCartDropdownOpen] = useState(false);
+
+	const handleCartToggle = (isOpen) => {
+		setIsCartDropdownOpen(isOpen);
+		if (isOpen) {
+			setIsProfileDropdownOpen(false);
+		}
+	};
+
+	const handleProfileToggle = (isOpen) => {
+		setIsProfileDropdownOpen(isOpen);
+		if (isOpen) {
+			setIsCartDropdownOpen(false);
+		}
+	};
 
 	return (
-		<nav className="bg-gray-800 shadow-md sticky top-0 z-50">
+		<nav className="bg-gray-800 shadow-md sticky top-0 z-50 sticky top-0">
 			<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 				<div className="relative flex h-16 items-center justify-between">
 					{/* Mobile Menu Button */}
@@ -72,55 +88,39 @@ export default function NavBar() {
 
 					{/* Cart & Profile */}
 					<div className="absolute inset-y-0 right-0 flex items-center space-x-4">
-						{/* Cart Button */}
-						<Link to="/cart" className="relative text-gray-400 hover:text-white">
-							<svg
-								className="w-7 h-7"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth="2"
-								viewBox="0 0 24 24"
-							>
-								<path
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									d="M3 3h2l1.5 9h12l1.5-6H6M7 18a2 2 0 100 4 2 2 0 000-4m10 0a2 2 0 100 4 2 2 0 000-4"
-								/>
-							</svg>
-							{cartItems.length > 0 && (
-								<span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-									{cartItems.length}
-								</span>
-							)}
-						</Link>
+						{/* Cart Icon */}
+						<CartIcon isOpen={isCartDropdownOpen} onToggle={handleCartToggle} />
 
 						{/* Profile Dropdown */}
-						<div className="relative">
-							<button
-								onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-								className="text-gray-400 hover:text-white focus:ring-2 focus:ring-white rounded-full p-1"
-							>
-								<img
-									className="size-8 rounded-full"
-									src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-									alt=""
-								/>
-							</button>
-
-							{isDropdownOpen && (
-								<div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-50">
-									<Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-										Profile
-									</Link>
-									<Link to="/orders" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-										Orders
-									</Link>
-									<Link to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-										Logout
-									</Link>
-								</div>
-							)}
-						</div>
+						<Dropdown
+							isOpen={isProfileDropdownOpen}
+							onClose={() => setIsProfileDropdownOpen(false)}
+							trigger={
+								<button
+									onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
+									className={`text-gray-400 hover:text-white focus:ring-2 focus:ring-white rounded-full p-1 ${
+										isProfileDropdownOpen ? "text-white" : ""
+									}`}
+								>
+									<img
+										className="size-8 rounded-full"
+										src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+										alt=""
+									/>
+								</button>
+							}
+							className="w-48"
+						>
+							<Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
+								Profile
+							</Link>
+							<Link to="/orders" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
+								Orders
+							</Link>
+							<Link to="/logout" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
+								Logout
+							</Link>
+						</Dropdown>
 					</div>
 				</div>
 			</div>
