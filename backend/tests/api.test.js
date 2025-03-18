@@ -7,7 +7,7 @@ describe("API Tests", () => {
   let server;
 
   beforeAll(async () => {
-    process.env.PORT = "5002"; // Use a different port for tests
+    process.env.PORT = "5001"; // Use a different port for tests
     server = app.listen(process.env.PORT, () => console.log(`Test server running on port ${process.env.PORT}`));
 
     console.log("⏳ Waiting for MongoDB connection...");
@@ -16,7 +16,7 @@ describe("API Tests", () => {
       ? "mongodb://127.0.0.1:27017/ecommerce-test" // Use local test DB
       : process.env.MONGO_URI; // Use Docker Mongo in production
 
-    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(MONGO_URI);
 
     console.log("✅ MongoDB connected for tests");
 
