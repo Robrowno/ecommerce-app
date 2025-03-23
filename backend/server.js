@@ -9,20 +9,22 @@ dotenv.config();
 
 const app = express();
 
+// Middleware 
+app.use(cors({ origin: "*" }));
+app.use(express.json());
+app.use(morgan("dev"));
+
+// Static files
 app.use("/ecomm-images", express.static(path.join(__dirname, "ecomm-images")));
 
+// Routes
 const productRoutes = require("./routes/productRoutes");
 app.use("/api/products", productRoutes);
-
-// Middleware
-app.use(express.json());
-app.use(cors({ origin: "*" }));
-app.use(morgan("dev"));
 
 // Connect to MongoDB
 if (process.env.NODE_ENV !== "test") {
 	mongoose
-		.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+		.connect(process.env.MONGO_URI)
 		.then(() => console.log("✅ MongoDB connected"))
 		.catch((err) => console.error("❌ MongoDB connection error:", err));
 }
