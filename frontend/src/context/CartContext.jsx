@@ -52,6 +52,7 @@ export const CartProvider = ({ children }) => {
 
 	const addToCart = (product) => {
 		dispatch({ type: "ADD_TO_CART", payload: product });
+
 	};
 
 	const removeFromCart = (productId) => {
