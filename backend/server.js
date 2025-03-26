@@ -5,11 +5,12 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
 
+
 dotenv.config();
 
 const app = express();
 
-// Middleware 
+// Middleware
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 app.use(morgan("dev"));
