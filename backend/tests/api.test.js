@@ -16,7 +16,7 @@ describe("API Tests", () => {
       ? "mongodb://127.0.0.1:27017/ecommerce-test" // Use local test DB
       : process.env.MONGO_URI; // Use Docker Mongo in production
 
-    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    await mongoose.connect(MONGO_URI);
 
     console.log("✅ MongoDB connected for tests");
 
