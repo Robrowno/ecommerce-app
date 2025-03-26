@@ -37,11 +37,23 @@ export default function NavBar() {
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						>
 							{isMobileMenuOpen ? (
-								<svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+								<svg
+									className="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									viewBox="0 0 24 24"
+								>
 									<path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
 								</svg>
 							) : (
-								<svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+								<svg
+									className="w-6 h-6"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth="2"
+									viewBox="0 0 24 24"
+								>
 									<path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M3 12h18m-18 6h18" />
 								</svg>
 							)}
@@ -56,9 +68,21 @@ export default function NavBar() {
 						</Link>
 
 						<div className="hidden sm:ml-10 sm:flex space-x-4">
-							<Link to="/products" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">Products</Link>
-							<Link to="/products?category=Laptops" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">Computers</Link>
-							<Link to="/products?category=Mobile Phones" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">Mobiles</Link>
+							<Link to="/products" className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded">
+								Products
+							</Link>
+							<Link
+								to="/products?category=Laptops"
+								className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+							>
+								Computers
+							</Link>
+							<Link
+								to="/products?category=Mobile Phones"
+								className="text-gray-300 hover:bg-gray-700 px-3 py-2 rounded"
+							>
+								Mobiles
+							</Link>
 						</div>
 					</div>
 
@@ -69,48 +93,65 @@ export default function NavBar() {
 
 						{/* Profile Dropdown */}
 						<Dropdown
-        isOpen={isProfileDropdownOpen}
-        onClose={() => setIsProfileDropdownOpen(false)}
-        trigger={
-          <button
-            onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
-            className={`text-gray-400 hover:text-white focus:ring-2 focus:ring-white rounded-full p-1 ${
-              isProfileDropdownOpen ? "text-white" : ""
-            }`}
-          >
-            <span className="text-white text-xl">👤</span>
-
-          </button>
-        }
-        className="w-48"
-      >
-        {user ? (
-          <>
-            <Link to="/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-              Profile
-            </Link>
-            <Link to="/orders" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-              Orders
-            </Link>
-            <button
-              onClick={logout}
-              className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200"
-            >
-              Logout
-            </button>
-          </>
-        ) : (
-          <>
-            <Link to="/login" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-              Login
-            </Link>
-            <Link to="/register" className="block px-4 py-2 text-gray-700 hover:bg-gray-200">
-              Register
-            </Link>
-          </>
-        )}
-      </Dropdown>
-
+							isOpen={isProfileDropdownOpen}
+							onClose={() => setIsProfileDropdownOpen(false)}
+							trigger={
+								<button
+									onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
+									className={`text-gray-400 hover:text-white focus:ring-2 focus:ring-white rounded-full p-1 ${
+										isProfileDropdownOpen ? "text-white" : ""
+									}`}
+								>
+									<span className="text-white text-xl">👤</span>
+								</button>
+							}
+							className="w-48"
+						>
+							{user ? (
+								<>
+									<Link
+										to="/profile"
+										onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
+										className="block px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-md"
+									>
+										Profile
+									</Link>
+									<Link
+										to="/orders"
+										onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
+										className="block px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-md"
+									>
+										Orders
+									</Link>
+									<button
+										onClick={() => {
+											logout();
+											handleProfileToggle(!isProfileDropdownOpen);
+										}}
+										className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-md"
+									>
+										Logout
+									</button>
+								</>
+							) : (
+								<>
+									<Link
+										to="/login"
+										onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
+										className="block px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded"
+									>
+										Login
+									</Link>
+									<Link
+										to="/register"
+										onClick={() => handleProfileToggle(!isProfileDropdownOpen)}
+										className="block px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded"
+									>
+										Register
+									</Link>
+								</>
+							)}
+						</Dropdown>
 					</div>
 				</div>
 			</div>
@@ -119,9 +160,21 @@ export default function NavBar() {
 			{isMobileMenuOpen && (
 				<div className="sm:hidden">
 					<div className="px-2 pt-2 pb-3 space-y-1">
-						<Link to="/products" className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700">Products</Link>
-						<Link to="/category/computers" className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700">Computers</Link>
-						<Link to="/category/mobiles" className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700">Mobiles</Link>
+						<Link to="/products" className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700">
+							Products
+						</Link>
+						<Link
+							to="/products?category=Laptops"
+							className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700"
+						>
+							Computers
+						</Link>
+						<Link
+							to="/products?category=Mobile Phones"
+							className="block px-3 py-2 text-base text-gray-300 hover:bg-gray-700"
+						>
+							Mobiles
+						</Link>
 					</div>
 				</div>
 			)}
