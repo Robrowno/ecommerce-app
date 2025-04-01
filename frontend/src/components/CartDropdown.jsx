@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import PropTypes from "prop-types";
 import Dropdown from "./Dropdown";
+import CheckoutButton from "./CheckoutButton";
 
 const CartDropdown = ({ isOpen, onClose, trigger }) => {
 	const { cart, removeFromCart, updateQuantity, getCartTotal, getCartItemsCount } = useCart();
@@ -62,7 +63,7 @@ const CartDropdown = ({ isOpen, onClose, trigger }) => {
 								))}
 							</div>
 
-							<div className="mt-4 pt-4 border-t">
+							<div className="mt-4 pt-4 border-t space-y-2">
 								<div className="flex justify-between mb-4">
 									<span className="font-semibold">Total:</span>
 									<span className="font-semibold">£{getCartTotal().toFixed(2)}</span>
@@ -72,10 +73,18 @@ const CartDropdown = ({ isOpen, onClose, trigger }) => {
 									onClick={() => {
 										onClose();
 									}}
-									className="flex justify-center w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+									className="flex justify-center w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700"
 								>
 									View Cart
 								</Link>
+								<CheckoutButton
+									className="w-full"
+									onClick={() => {
+										onClose();
+									}}
+								>
+									Checkout
+								</CheckoutButton>
 							</div>
 						</>
 					)}
