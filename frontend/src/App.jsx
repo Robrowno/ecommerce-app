@@ -6,6 +6,7 @@ import About from "./screens/About.jsx";
 import Register from "./screens/Register.jsx";
 import Login from "./screens/Login.jsx";
 import NavBar from "./components/NavBar.jsx";
+import Footer from "./components/Footer.jsx"; // ✅ Footer import
 import { CartProvider } from "./context/CartContext.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
 import Profile from "./screens/Profile.jsx";
@@ -34,13 +35,8 @@ const App = () => {
           element={user ? <ProductDetail /> : <Navigate to="/login" />}
         />
         <Route path="/about" element={<About />} />
-        <Route path="/policies" element={<Policies />} />
-        <Route path="/shipping" element={<Shipping />} />
-        <Route path="/returns" element={<ReturnsAndSupport />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
-
       </Routes>
     </CartProvider>
   );
