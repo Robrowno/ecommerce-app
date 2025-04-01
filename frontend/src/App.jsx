@@ -14,6 +14,7 @@ import Policies from "./screens/Policies.jsx";
 import Shipping from "./screens/Shipping.jsx";
 import ReturnsAndSupport from "./screens/ReturnsAndSupport.jsx";
 import Cart from "./screens/Cart";
+import Orders from "./screens/Orders.jsx";
 import "./index.css";
 
 const App = () => {
@@ -44,8 +45,8 @@ const App = () => {
         />
         <Route
           path="/cart"
-          element={user ? <Cart /> : <Navigate to="/login" />}
-        />
+          element={user ? <Cart /> : <Navigate to="/login" />} />
+				<Route path="/orders" element={user ? <Orders /> : <Navigate to="/login" />} />
         <Route path="/policies" element={<Policies />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/returns" element={<ReturnsAndSupport />} />
