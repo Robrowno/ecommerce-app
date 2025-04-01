@@ -13,6 +13,7 @@ import Profile from "./screens/Profile.jsx";
 import Policies from "./screens/Policies.jsx";
 import Shipping from "./screens/Shipping.jsx";
 import ReturnsAndSupport from "./screens/ReturnsAndSupport.jsx";
+import Cart from "./screens/Cart";
 import "./index.css";
 
 const App = () => {
@@ -41,7 +42,10 @@ const App = () => {
           path="/profile"
           element={user ? <Profile /> : <Navigate to="/login" />}
         />
-        {/* Optional: add these too if they’re meant to be public */}
+        <Route
+          path="/cart"
+          element={user ? <Cart /> : <Navigate to="/login" />}
+        />
         <Route path="/policies" element={<Policies />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path="/returns" element={<ReturnsAndSupport />} />
