@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import PropTypes from "prop-types";
 import Dropdown from "./Dropdown";
@@ -66,15 +67,15 @@ const CartDropdown = ({ isOpen, onClose, trigger }) => {
 									<span className="font-semibold">Total:</span>
 									<span className="font-semibold">£{getCartTotal().toFixed(2)}</span>
 								</div>
-								<button
+								<Link
+									to="/cart"
 									onClick={() => {
 										onClose();
-										window.location.href = "/cart";
 									}}
-									className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
+									className="flex justify-center w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700"
 								>
 									View Cart
-								</button>
+								</Link>
 							</div>
 						</>
 					)}
