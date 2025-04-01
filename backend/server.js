@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const path = require("path");
 
-
 dotenv.config();
 
 const app = express();
@@ -21,6 +20,9 @@ app.use("/ecomm-images", express.static(path.join(__dirname, "ecomm-images")));
 // Routes
 const productRoutes = require("./routes/productRoutes");
 app.use("/api/products", productRoutes);
+
+// Mount the Stripe payment route
+app.use("/api/payment", require("./routes/paymentRoutes"));
 
 // Connect to MongoDB
 if (process.env.NODE_ENV !== "test") {
