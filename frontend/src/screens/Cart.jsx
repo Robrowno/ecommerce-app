@@ -1,6 +1,7 @@
 // src/screens/Cart.jsx
 import { useCart } from "../context/CartContext";
 import { Link } from "react-router-dom";
+import CheckoutButton from "../components/CheckoutButton";
 
 const Cart = () => {
   const {
@@ -70,14 +71,9 @@ const Cart = () => {
             Total: £{getCartTotal().toFixed(2)}
           </div>
 
-          <div className="mt-6 text-right">
-            <Link
-              to="/checkout"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700"
-            >
-              Proceed to Checkout
-            </Link>
-          </div>
+					<div className="mt-6 text-right flex justify-end">
+						<CheckoutButton className="w-80">Proceed to Checkout</CheckoutButton>
+					</div>
         </>
       )}
     </div>
