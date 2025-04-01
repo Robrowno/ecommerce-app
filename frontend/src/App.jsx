@@ -8,6 +8,7 @@ import Login from "./screens/Login.jsx";
 import NavBar from "./components/NavBar.jsx";
 import { CartProvider } from "./context/CartContext.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
+import Profile from "./screens/Profile.jsx";
 import "./index.css";
 
 const App = () => {
@@ -32,6 +33,8 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
+
       </Routes>
     </CartProvider>
   );
