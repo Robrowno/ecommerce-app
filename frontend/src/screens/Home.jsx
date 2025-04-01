@@ -56,6 +56,9 @@ export default function Home() {
 							<img src={`http://localhost:5001${laptop.image}`} alt={laptop.name} className="w-full h-32 object-cover rounded" />
 							<h3 className="mt-2 text-lg font-semibold">{laptop.name}</h3>
 							<p className="text-gray-700">{laptop.price}</p>
+							<Link to={`/product/${laptop._id}`} className="flex justify-end">
+								<button className=' bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300'>View</button>
+							</Link>
 						</div>
 					))}
 				</div>
@@ -67,6 +70,9 @@ export default function Home() {
 							<img src={`http://localhost:5001${phone.image}`} alt={phone.name} className="w-full h-32 object-cover rounded" />
 							<h3 className="mt-2 text-lg font-semibold">{phone.name}</h3>
 							<p className="text-gray-700">{phone.price}</p>
+							<Link to={`/product/${phone._id}`} className="flex justify-end">
+								<button className=' bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg shadow-lg transition duration-300'>View</button>
+							</Link>
 						</div>
 					))}
 				</div>

@@ -10,6 +10,9 @@ import { CartProvider } from "./context/CartContext.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
 import Profile from "./screens/Profile.jsx";
 import "./index.css";
+import Policies from "./screens/Policies.jsx";
+import Shipping from "./screens/Shipping.jsx";
+import ReturnsAndSupport from "./screens/ReturnsAndSupport.jsx";
 
 const App = () => {
   const { user } = useAuth();
@@ -31,6 +34,9 @@ const App = () => {
           element={user ? <ProductDetail /> : <Navigate to="/login" />}
         />
         <Route path="/about" element={<About />} />
+        <Route path="/policies" element={<Policies />} />
+        <Route path="/shipping" element={<Shipping />} />
+        <Route path="/returns" element={<ReturnsAndSupport />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={user ? <Profile /> : <Navigate to="/login" />} />
