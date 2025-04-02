@@ -1,13 +1,26 @@
+import { useAuth } from "../context/AuthContext";
 import { useCart } from "../context/CartContext";
+
 const CheckoutButton = ({ children, className = "" }) => {
 	const { cart } = useCart();
+	const { user } = useAuth();
 
 	const handleCheckout = async () => {
 		try {
+			const enrichedItems = cart.map((item) => ({
+				name: item.name,
+				price: item.price,
+				quantity: item.quantity,
+				productId: item._id,
+			}));
+
 			const res = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/create-checkout-session`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ items: cart }), // Send cart items directly
+				body: JSON.stringify({
+					items: enrichedItems,
+					userId: user?.uid || null,
+				}),
 			});
 
 			const data = await res.json();

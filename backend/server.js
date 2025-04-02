@@ -9,8 +9,12 @@ dotenv.config();
 
 const app = express();
 
-// Middleware
 app.use(cors({ origin: "*" }));
+
+// Stripe webhook comes before any JSON middleware
+app.use("/api/stripe", require("./routes/stripeWebhook"));
+
+// Middleware
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -23,6 +27,8 @@ app.use("/api/products", productRoutes);
 
 // Mount the Stripe payment route
 app.use("/api/payment", require("./routes/paymentRoutes"));
+
+app.use("/api/orders", require("./routes/orderRoutes"));
 
 // Connect to MongoDB
 if (process.env.NODE_ENV !== "test") {

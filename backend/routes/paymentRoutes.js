@@ -19,7 +19,7 @@ router.post("/create-checkout-session", async (req, res) => {
 				product_data: {
 					name: item.name,
 				},
-				unit_amount: item.price * 100, // Convert £ to pence
+				unit_amount: Math.round(item.price * 100),
 			},
 			quantity: item.quantity,
 		}));
@@ -30,6 +30,17 @@ router.post("/create-checkout-session", async (req, res) => {
 			line_items,
 			success_url: `${CLIENT_URL}/orders`,
 			cancel_url: `${CLIENT_URL}/cart`,
+			metadata: {
+				userId: req.body.userId || null,
+				orderItems: JSON.stringify(
+					items.map((item) => ({
+						name: item.name,
+						qty: item.quantity,
+						price: item.price,
+						product: item.productId,
+					}))
+				),
+			},
 		});
 
 		return res.json({ url: session.url });
