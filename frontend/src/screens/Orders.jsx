@@ -1,14 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
+import { useCart } from "../context/CartContext";
+import { useSearchParams } from "react-router-dom";
 
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [loading, setLoading] = useState(true);
 	const [openDates, setOpenDates] = useState({});
 	const [openOrders, setOpenOrders] = useState({});
+	const [searchParams] = useSearchParams();
 
 	const { user } = useAuth();
+	const { clearCart } = useCart();
+	const cleared = useRef(false);
+
+	useEffect(() => {
+		if (searchParams.get("success") === "true" && !cleared.current) {
+			clearCart();
+			cleared.current = true;
+		}
+	}, [searchParams, clearCart]);
 
 	const formatDate = (isoString) =>
 		new Date(isoString).toLocaleDateString("en-GB", {
@@ -64,14 +76,12 @@ const Orders = () => {
 					const firstDate = dateKeys[0];
 					const firstOrder = grouped[firstDate]?.[0]?._id;
 
-					// Open all dates
 					const allDatesOpen = {};
 					dateKeys.forEach((date) => {
 						allDatesOpen[date] = true;
 					});
 					setOpenDates(allDatesOpen);
 
-					// Only open first order in the first date
 					if (firstOrder) {
 						setOpenOrders({ [firstOrder]: true });
 					}
