@@ -66,10 +66,8 @@ export default function NavBar() {
 
           {/* Cart & Profile */}
           <div className="absolute inset-y-0 right-0 flex items-center space-x-4">
-            {/* Cart Icon */}
             <CartIcon isOpen={isCartDropdownOpen} onToggle={handleCartToggle} />
 
-            {/* Profile Dropdown */}
             <Dropdown
               isOpen={isProfileDropdownOpen}
               onClose={() => setIsProfileDropdownOpen(false)}
@@ -114,6 +112,14 @@ export default function NavBar() {
                     className="block px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-md"
                   >
                     Orders
+                  </Link>
+                  {/* ✅ Contact in dropdown */}
+                  <Link
+                    to="/contact"
+                    onClick={() => handleProfileToggle(false)}
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-200 hover:rounded-md"
+                  >
+                    Support
                   </Link>
                   <button
                     onClick={() => {
