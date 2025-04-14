@@ -9,10 +9,9 @@ const Footer = () => {
         color: "white",
         padding: "1rem",
         textAlign: "center",
-        marginTop: "2rem",
       }}
     >
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 bottom-0">
         <p>© 2025 CmdCtrl. All rights reserved.</p>
         <div className="flex gap-4 text-sm">
           <Link to="/about" className="hover:underline text-gray-300">
