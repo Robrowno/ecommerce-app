@@ -23,45 +23,50 @@ const App = () => {
 
   return (
     <CartProvider>
-      <NavBar />
-      <Routes>
-        <Route
-          path="/"
-          element={user ? <Home /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/products"
-          element={user ? <Products /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/product/:id"
-          element={user ? <ProductDetail /> : <Navigate to="/login" />}
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/profile"
-          element={user ? <Profile /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/cart"
-          element={user ? <Cart /> : <Navigate to="/login" />}
-        />
-        <Route
-          path="/orders"
-          element={user ? <Orders /> : <Navigate to="/login" />}
-        />
-        <Route path="/policies" element={<Policies />} />
-        <Route path="/shipping" element={<Shipping />} />
-        <Route path="/returns" element={<ReturnsAndSupport />} />
-        <Route path="/about" element={<About/>} />
-        <Route
-          path="/contact"
-          element={user ? <Contact /> : <Navigate to="/login" />}
-        />
-      </Routes>
-      <Footer />
+      <div className="min-h-screen flex flex-col">
+        <NavBar />
+        <main className="flex-grow">
+          <Routes>
+            <Route
+              path="/"
+              element={user ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/products"
+              element={user ? <Products /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/product/:id"
+              element={user ? <ProductDetail /> : <Navigate to="/login" />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route
+              path="/profile"
+              element={user ? <Profile /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/cart"
+              element={user ? <Cart /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/orders"
+              element={user ? <Orders /> : <Navigate to="/login" />}
+            />
+            <Route path="/policies" element={<Policies />} />
+            <Route path="/shipping" element={<Shipping />} />
+            <Route path="/returns" element={<ReturnsAndSupport />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/contact"
+              element={user ? <Contact /> : <Navigate to="/login" />}
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+
     </CartProvider>
   );
 };
