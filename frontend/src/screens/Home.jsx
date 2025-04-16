@@ -53,7 +53,7 @@ export default function Home() {
       {/* Hero Section */}
       <div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-900">
         <img
-          src="../../public/hero-image.jpg"
+          src="/hero-image.jpg"
           alt="Hero image of a laptop and mobile phone"
           className="absolute inset-0 w-full h-full object-cover opacity-50"
         />
