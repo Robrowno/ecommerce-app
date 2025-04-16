@@ -2,7 +2,7 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import * as THREE from 'three';
-import RINGS from 'vanta/dist/vanta.rings.min';
+import RINGS from 'vanta/es/vanta.rings';
 import axios from 'axios';
 import Testimonials from '../components/Testimonials';
 import InfoSection from '../components/InfoColumns';
@@ -132,4 +132,3 @@ export default function Home() {
 		</div>
 	)
 }
-
