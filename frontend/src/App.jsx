@@ -15,7 +15,7 @@ import Shipping from "./screens/Shipping.jsx";
 import ReturnsAndSupport from "./screens/ReturnsAndSupport.jsx";
 import Cart from "./screens/Cart";
 import Orders from "./screens/Orders.jsx";
-import Contact from "./screens/Contact.jsx"; // ✅ Add this line
+import Contact from "./screens/Contact.jsx";
 import "./index.css";
 
 const App = () => {
