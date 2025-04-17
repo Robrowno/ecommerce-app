@@ -6,7 +6,7 @@ import About from "./screens/About.jsx";
 import Register from "./screens/Register.jsx";
 import Login from "./screens/Login.jsx";
 import NavBar from "./components/NavBar.jsx";
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/footer.jsx"
 import { CartProvider } from "./context/CartContext.jsx";
 import { useAuth } from "./context/AuthContext.jsx";
 import Profile from "./screens/Profile.jsx";
@@ -15,7 +15,7 @@ import Shipping from "./screens/Shipping.jsx";
 import ReturnsAndSupport from "./screens/ReturnsAndSupport.jsx";
 import Cart from "./screens/Cart";
 import Orders from "./screens/Orders.jsx";
-import Contact from "./screens/Contact.jsx"; // ✅ Add this line
+import Contact from "./screens/Contact.jsx";
 import "./index.css";
 
 const App = () => {
