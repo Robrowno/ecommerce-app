@@ -7,6 +7,7 @@ import axios from 'axios';
 import Testimonials from '../components/Testimonials';
 import InfoSection from '../components/InfoColumns';
 
+
 export default function Home() {
 
 	const [vantaEffect, setVantaEffect] = useState(null);
