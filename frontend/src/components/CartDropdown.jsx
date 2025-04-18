@@ -25,7 +25,7 @@ const CartDropdown = ({ isOpen, onClose, trigger }) => {
 									<div key={item._id} className="flex items-center justify-between py-3 border-b">
 										<div className="flex items-center space-x-3">
 											<img
-												src={`http://localhost:5001${item.image}`}
+												src={`${import.meta.env.VITE_API_URL}${item.image}`}
 												alt={item.name}
 												className="w-12 h-12 object-cover rounded"
 											/>
