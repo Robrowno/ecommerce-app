@@ -1,11 +1,33 @@
-
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import Testimonials from '../components/Testimonials';
 import InfoSection from '../components/InfoColumns';
 
+
 export default function Home() {
+
+	const [vantaEffect, setVantaEffect] = useState(null);
+	const vantaRef = useRef(null);
+
+	useEffect(() => {
+		if (!vantaEffect) {
+			setVantaEffect(RINGS({
+				el: vantaRef.current,
+				THREE,
+				mouseControls: true,
+				touchControls: true,
+				gyroControls: false,
+				minHeight: 200.00,
+				minWidth: 200.00,
+				scale: 1.0,
+				scaleMobile: 1.0
+			}));
+		}
+		return () => {
+			if (vantaEffect) vantaEffect.destroy();
+		};
+	}, [vantaEffect]);
 
 	const [laptops, setLaptops] = useState([]);
 	const [phones, setPhones] = useState([]);
@@ -29,7 +51,7 @@ export default function Home() {
 	return (
 		<div>
 			<div className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-900">
-				<img src="../../public/hero-image.jpg" alt="Hero image of a laptop and mobile phone"
+				<img src="/hero-image.jpg" alt="Hero image of a laptop and mobile phone"
 					className="absolute inset-0 w-full h-full object-cover opacity-50"
 				/>
 
@@ -94,7 +116,17 @@ export default function Home() {
 				<InfoSection />
 			</div>
 
+			<div ref={vantaRef} className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-900">
+				<div className="relative w-full px-6 flex justify-start">
+					<div className="max-w-xl text-left">
+						<h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
+							The online home of the best technology<span className="blink ms-1">|</span>
+						</h3>
+						<p className="text-white mt-2">Everything you need, just a click away.</p>
+					</div>
+				</div>
+			</div>
+
 		</div>
 	)
 }
-
