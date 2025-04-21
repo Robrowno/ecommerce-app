@@ -41,7 +41,7 @@ const team = [
     name: "Chidi",
     role: "Intern / Customer Service",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
+      "Hi, I’m Chidi. In fast-paced moments when the pressure rises, I aim to be the calm breeze that helps the team stay grounded and focused. I take pride in delegating tasks thoughtfully and making sure everyone has what they need to succeed. Supporting the team goes beyond checking boxes — it’s about keeping morale high, communication clear, and momentum steady. Whether it’s assisting customers or stepping in to help a teammate, I’m here to contribute with purpose and positivity.",
     github: "#",
     linkedin: "#",
     image: "/images/chidi.jpeg",
