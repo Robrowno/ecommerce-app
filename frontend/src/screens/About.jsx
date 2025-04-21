@@ -32,7 +32,7 @@ const team = [
   {
     name: "Tharun",
     role: "Frontend Developer",
-    about:"I'm Tharun, a Cybersecurity undergraduate at the University of West London with a deep passion for safeguarding digital systems and exploring emerging security technologies. I value teamwork, clear documentation, and continuous learning, and I'm eager to tackle challenges that strengthen my technical and analytical skills in the ever-evolving field of cybersecurity.",
+    about:"Hi,I'm Tharun, a Cybersecurity undergraduate at the University of West London with a deep passion for safeguarding digital systems and exploring emerging security technologies. I value teamwork, clear documentation, and continuous learning, and I'm eager to tackle challenges that strengthen my technical and analytical skills in the ever-evolving field of cybersecurity.",
     github: "https://github.com/TharunGit220",
     linkedin: "https://www.linkedin.com/in/tharunuppala/",
     image: "/images/tharun.jpeg",
