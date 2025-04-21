@@ -4,39 +4,44 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 const team = [
   {
     name: "Christian",
+    role: "Project Manager",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
+      "Hi, I’m Christian! I’m a Computer Science student at the University of West London and a Software Developer. I like solving challenging problems with small teams and overseeing solutions from start to finish. Currently, I am learning and working with the Blazor C# framework and developing my next project!",
     github: "https://github.com/Robrowno",
     linkedin: "https://www.linkedin.com/in/christian-brown-ba7741171/",
     image: "/images/christian.jpeg",
   },
   {
     name: "Sam",
+    role: "Full Stack Developer",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
+      "Hi, I’m Sam! As a Computer Science student and developer at CmdCtrl, I build end-to-end features across the stack — from responsive front-end interfaces to reliable back-end systems. I focus on clean code, intuitive user experiences, and close teamwork to create a smooth, scalable e-commerce site.",
     github: "https://github.com/samko945",
     linkedin: "https://www.linkedin.com/in/samuel-javorka-a1553230a/",
     image: "/images/sam.jpeg",
   },
   {
     name: "Kostas",
+    role: "Platform Engineer",
     about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
+      "Hi, my name is Konstantinos Koliolios. I’m a Computer Science student at the University of West London with a strong interest in cloud computing and DevOps. I’m an AWS Certified Solutions Architect Associate and have hands-on experience using AWS services to build and deploy scalable applications. I’m also skilled in Infrastructure as Code using Terraform, and I enjoy automating cloud infrastructure to improve efficiency and reliability. I’m always looking for new challenges to grow my skills and contribute to meaningful projects.",
     github: "https://github.com/kostas39",
     linkedin: "https://www.linkedin.com/in/kostaskoliolios/",
     image: "/images/kostas.jpeg",
   },
   {
     name: "Tharun",
-    about:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
+    role: "Frontend Developer",
+    about:"I'm Tharun, a Cybersecurity undergraduate at the University of West London with a deep passion for safeguarding digital systems and exploring emerging security technologies. I value teamwork, clear documentation, and continuous learning, and I'm eager to tackle challenges that strengthen my technical and analytical skills in the ever-evolving field of cybersecurity.",
     github: "https://github.com/TharunGit220",
     linkedin: "https://www.linkedin.com/in/tharunuppala/",
     image: "/images/tharun.jpeg",
   },
   {
     name: "Chidi",
-    about: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
+    role: "Intern / Customer Service",
+    about:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ac pretium ante. Etiam et ex tempus, posuere nisi ac, maximus metus.",
     github: "#",
     linkedin: "#",
     image: "/images/chidi.jpeg",
@@ -58,7 +63,7 @@ const About = () => {
               className="w-full h-48 object-cover rounded-md mb-4"
             />
             <h2 className="text-xl font-semibold text-gray-800">{member.name}</h2>
-            <p className="text-sm font-bold mt-2">Role:</p>
+            <p className="text-sm font-bold mt-2">Role: {member.role}</p>
             <p className="text-sm text-gray-600 mt-1">{member.about}</p>
             <div className="flex gap-4 mt-4">
               <a
