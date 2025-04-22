@@ -8,7 +8,7 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <div className="mt-10 bg-gray-100 p-6 rounded-lg shadow-md">
+		<div className="bg-gray-100 p-6 rounded-lg shadow-md">
             <h2 className="text-2xl font-bold text-center mb-5">What Our Customers Say</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {testimonials.map((testimonial, index) => (

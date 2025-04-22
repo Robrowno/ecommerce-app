@@ -74,6 +74,7 @@ export default function Home() {
 				</div>
 			</div>
 
+			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 			<div className="p-6">
 				<h2 className="text-2xl font-bold mb-4">Our Recommended Laptops</h2>
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -113,11 +114,12 @@ export default function Home() {
 							</Link>
 						</div>
 					))}
+					</div>
 				</div>
 			</div>
 
 			{/* Divider Section */}
-			<div className="relative w-full h-52 bg-gradient-to-r from-gray-800 to-gray-900 shadow-md flex items-center justify-center px-6">
+			<div className="w-full h-52 bg-gradient-to-b from-gray-800 to-[#121928] flex items-center justify-center px-6">
 				<div className="text-center text-white">
 					<h3 className="text-3xl md:text-4xl font-bold mb-3">View Our Product Range</h3>
 					<Link
@@ -129,16 +131,15 @@ export default function Home() {
 				</div>
 			</div>
 
-			<div className="bg-gradient-to-t from-gray-900 via-gray-900/95 to-white mt-11 pb-10">
+			<div className="bg-gradient-to-t from-[#202428] to-[#121928] pb-10">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<Testimonials />
 				<InfoSection />
+				</div>
 			</div>
 
-			<div
-				ref={vantaRef}
-				className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center bg-gray-900"
-			>
-				<div className="relative w-full px-6 flex justify-start">
+			<div ref={vantaRef} className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-gray-900">
+				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
 					<div className="max-w-xl text-left">
 						<h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight">
 							The online home of the best technology<span className="blink ms-1">|</span>
