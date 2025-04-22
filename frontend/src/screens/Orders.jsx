@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 const Orders = () => {
 	const [orders, setOrders] = useState([]);
 	const [loading, setLoading] = useState(true);
+	// track which dates and individual orders are expanded
 	const [openDates, setOpenDates] = useState({});
 	const [openOrders, setOpenOrders] = useState({});
 	const [searchParams] = useSearchParams();
@@ -15,6 +16,7 @@ const Orders = () => {
 	const { clearCart } = useCart();
 	const cleared = useRef(false);
 
+	// After a successful checkout, clear the cart once
 	useEffect(() => {
 		if (searchParams.get("success") === "true" && !cleared.current) {
 			clearCart();
@@ -22,6 +24,7 @@ const Orders = () => {
 		}
 	}, [searchParams, clearCart]);
 
+	// Convert an ISO date string into a readable UK format like 11 Apr 2025
 	const formatDate = (isoString) =>
 		new Date(isoString).toLocaleDateString("en-GB", {
 			day: "numeric",
@@ -31,9 +34,14 @@ const Orders = () => {
 
 	const groupOrdersByDate = (orders) => {
 		const grouped = {};
+		// Loop through each order
 		orders.forEach((order) => {
+			// Convert the createdAt date to readable format
 			const dateStr = formatDate(order.createdAt);
 			if (!grouped[dateStr]) grouped[dateStr] = [];
+			/*	Groups orders into an object where each key is a date, and the value is a list of orders from that date
+					"11 Apr 2025": [order1, order2],
+					"10 Apr 2025": [order3],				*/
 			grouped[dateStr].push(order);
 		});
 		return grouped;
@@ -43,7 +51,7 @@ const Orders = () => {
 		let totalItems = 0;
 		let totalPrice = 0;
 		let totalOrders = ordersOnDate.length;
-
+		// loops through every order for that day and adds up total items and price
 		ordersOnDate.forEach((order) => {
 			order.orderItems.forEach((item) => {
 				totalItems += item.qty;
@@ -53,10 +61,12 @@ const Orders = () => {
 		return { totalItems, totalPrice, totalOrders };
 	};
 
+	// count how many individual items are in an order
 	const getOrderItemCount = (order) => {
 		return order.orderItems.reduce((sum, item) => sum + item.qty, 0);
 	};
 
+	// calculate total price of a specific order
 	const getOrderTotal = (order) => {
 		return order.orderItems.reduce((total, item) => total + item.qty * item.price, 0);
 	};
@@ -68,19 +78,23 @@ const Orders = () => {
 			.get(`${import.meta.env.VITE_API_URL}/api/orders/${user.uid}`)
 			.then((res) => {
 				if (Array.isArray(res.data)) {
+					// Sort orders newest first
 					const sorted = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 					setOrders(sorted);
 
+					// CREATE STATE
+					// create object with orders grouped by date
 					const grouped = groupOrdersByDate(sorted);
 					const dateKeys = Object.keys(grouped);
-					const firstDate = dateKeys[0];
-					const firstOrder = grouped[firstDate]?.[0]?._id;
-
+					// by default, expand ui for all dates
 					const allDatesOpen = {};
 					dateKeys.forEach((date) => {
 						allDatesOpen[date] = true;
 					});
 					setOpenDates(allDatesOpen);
+					// and expand only the first order on the first date
+					const firstDate = dateKeys[0];
+					const firstOrder = grouped[firstDate]?.[0]?._id;
 
 					if (firstOrder) {
 						setOpenOrders({ [firstOrder]: true });
@@ -96,16 +110,20 @@ const Orders = () => {
 			});
 	}, []);
 
+	// toggle visibility of a date's orders
 	const toggleDate = (date) => {
 		setOpenDates((prev) => ({ ...prev, [date]: !prev[date] }));
 	};
 
+	// toggle visibility of an order
 	const toggleOrder = (orderId) => {
 		setOpenOrders((prev) => ({ ...prev, [orderId]: !prev[orderId] }));
 	};
 
+	// If user info is loading, show message
 	if (!user || !user.uid) return <p className="text-center mt-10">Loading...</p>;
 
+	// CREATE OBJECT TO RENDER
 	const groupedOrders = groupOrdersByDate(orders);
 
 	return (
@@ -116,6 +134,7 @@ const Orders = () => {
 			) : orders.length === 0 ? (
 				<p className="text-center text-gray-500">No orders found.</p>
 			) : (
+				// Convert groupedOrders object into an array of [key, value] pairs
 				Object.entries(groupedOrders).map(([date, ordersOnDate]) => {
 					const summary = getDateSummary(ordersOnDate);
 					return (
@@ -143,6 +162,7 @@ const Orders = () => {
 								</div>
 							</div>
 
+							{/* If this date is expanded, render the orders for this date*/}
 							{openDates[date] && (
 								<div className="mt-2 space-y-2">
 									{ordersOnDate.map((order) => (
