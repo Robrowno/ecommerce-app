@@ -29,4 +29,4 @@ The Navigation allows you to directly filter by device type, but you can also us
 
 ### Developers
 
-This site was made by Kostas, Sam, Christian and Jay. Feel free to explore out github pages and add us to collaborate on projects in future! :)
+This site was made by Kostas, Sam, Christian and Tharun. Feel free to explore out github pages and add us to collaborate on projects in future! :)
