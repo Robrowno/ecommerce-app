@@ -78,16 +78,18 @@ const Products = () => {
 
 	return (
 		<>
-			<div className="h-100 flex bg-gray-100 border shadow-md justify-between">
-				<h1 className="text-3xl font-bold md:mb-5 md:mt-5 md:ps-7 justify-start md:w-1/3 hidden md:flex whitespace-nowrap">
-					{productCategory || "All Products"}
-				</h1>
-				<SearchFilterBar
-					onSearch={handleSearch}
-					onSort={handleSort}
-					onGroupByBrand={handleGroupByBrand}
-					sortConfig={sortConfig}
-				/>
+			<div className="h-100 flex bg-gray-100 border shadow-md justify-center">
+				<div className="w-full max-w-[82rem] flex justify-between items-center px-4">
+					<h1 className="text-3xl font-bold md:mb-5 md:mt-5 md:ps-7 justify-start md:w-1/3 hidden md:flex whitespace-nowrap">
+						{productCategory || "All Products"}
+					</h1>
+					<SearchFilterBar
+						onSearch={handleSearch}
+						onSort={handleSort}
+						onGroupByBrand={handleGroupByBrand}
+						sortConfig={sortConfig}
+					/>
+				</div>
 			</div>
 
 			<div className="container mx-auto p-5">
@@ -95,7 +97,6 @@ const Products = () => {
 					{filteredProducts.map((product) => (
 						<div key={product._id} className="p-4 border rounded-lg shadow-md">
 							<Link to={`/product/${product._id}`} className="block">
-								{console.log(`${import.meta.env.VITE_API_URL}${product.image}`)}
 								<img
 									src={`${import.meta.env.VITE_API_URL}${product.image}`}
 									alt={product.name}
